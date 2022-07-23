@@ -8,9 +8,9 @@ export class UsersService {
 public userArr :Array<User> =[
   {
 id: 1,
-username: '',
-email: '',
-password: ''
+username: 'afmin',
+email: 'admin@gmail.com',
+password: '123456'
   }
 ]
   constructor() { }

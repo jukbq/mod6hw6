@@ -1,22 +1,20 @@
+;
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SigninComponent } from './modal/signin/signin.component';
-import { SignupComponent } from './modal/signup/signup.component';
-import { AddpostComponent } from './modal/addpost/addpost.component';
+import { HeaderComponent } from './header/header.component';
+import { BlogComponent } from './blog/blog.component';
+
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SigninComponent,
-    SignupComponent,
-    AddpostComponent
-   
-   
-  ],
+  declarations: [				
+    AppComponent, HeaderComponent, BlogComponent, 
+
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
