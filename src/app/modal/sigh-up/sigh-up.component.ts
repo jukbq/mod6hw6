@@ -36,18 +36,16 @@ export
     $('.modal-backdrop').hide()
   } */
 
-  loginValid(form: NgForm){
+  formValid(form: NgForm){
     const login = this.user.slice(-1)[0].username;
-    if(form.value.user === login){
-    alert('This login already exists');
-     this.username = ''; 
-    }
-  }
-  emailValid(form: NgForm){
     const mail = this.user.slice(-1)[0].email;
-    if (form.value.nail === mail) {
-    alert('This email already exists')
-     this.username = ''; 
+    if(form.value.user == login){ 
+        alert('This login already exists');
+       this.username = '';
+    }
+    if (form.value.mail == mail) {
+      alert('This email already exists')
+      this.email = '';
     }
   }
 
