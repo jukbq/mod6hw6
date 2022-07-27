@@ -18,3 +18,7 @@ header .buttonBlock:nth-child(0) {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
+
+.disabel {
+  display: none;
+}

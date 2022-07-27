@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { SighUpComponent } from './modal/sigh-up/sigh-up.component';
+import { SighInComponent } from './modal/sigh-in/sigh-in.component';
 
 
 
@@ -19,7 +20,7 @@ import { SighUpComponent } from './modal/sigh-up/sigh-up.component';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, BlogComponent, SighUpComponent
+    AppComponent, HeaderComponent, BlogComponent, SighUpComponent, SighInComponent
 
   ],
   imports: [

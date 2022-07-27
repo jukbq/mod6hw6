@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as $ from "jquery";
+
+import { HeaderComponent } from 'src/app/components/header/header.component';
+
 import { User } from 'src/app/shared/interface/users.interface';
 import { UsersService } from 'src/app/shared/services/users.service';
 
@@ -13,35 +16,43 @@ export
   class SighUpComponent implements OnInit {
 
   public user: User[] = []
+  public activeUser = '';
+
 
   public username = '';
   public email = '';
   public pass = '';
+  static status: boolean;
+  static submitForm: string;
+
+
+
 
 
   constructor(
-    private serviceUser: UsersService
+    private serviceUser: UsersService,
+
   ) { }
 
   ngOnInit(): void {
     this.getNewUser()
+   
+    
   }
 
   getNewUser(): void {
     this.user = this.serviceUser.getUsers()
+    this.activeUser = this.serviceUser.getAciveUser()
   }
 
- /*  closeModal(){
-    $('#modalSighUn').hide()
-    $('.modal-backdrop').hide()
-  } */
 
-  formValid(form: NgForm){
+
+  formValid(form: NgForm) {
     const login = this.user.slice(-1)[0].username;
     const mail = this.user.slice(-1)[0].email;
-    if(form.value.user == login){ 
-        alert('This login already exists');
-       this.username = '';
+    if (form.value.user == login) {
+      alert('This login already exists');
+      this.username = '';
     }
     if (form.value.mail == mail) {
       alert('This email already exists')
@@ -51,26 +62,34 @@ export
 
 
   submitForm(form: NgForm) {
-      const new_user = {
-        id: 1,
-        username: this.username,
-        email: this.email,
-        password: this.pass
-      }
 
-      if (this.user.length > 0) {
-        const id = this.user.slice(-1)[0].id;
-        new_user.id = id + 1;
-      }
-      this.serviceUser.addUser(new_user)
+    let active: boolean = true
+
+    const new_user = {
+      id: 1,
+      username: this.username,
+      email: this.email,
+      password: this.pass
+    }
+    const activeUser = this.username
+    if (this.user.length > 0) {
+      const id = this.user.slice(-1)[0].id;
+      new_user.id = id + 1;
+    }
+
+    this.serviceUser.addUser(new_user)
+    this.serviceUser.addAciveUser(activeUser)
+
     this.username = '';
     this.email = '';
     this.pass = '';
-console.log(this.user);
 
-    }
-  
+
+
   }
+
+}
+
 
 
 
