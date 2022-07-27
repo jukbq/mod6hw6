@@ -10,7 +10,6 @@ import { UsersService } from 'src/app/shared/services/users.service';
   styleUrls: ['./sigh-up.component.scss']
 })
 export
-
   class SighUpComponent implements OnInit {
 
   public user: User[] = []
@@ -18,13 +17,11 @@ export
   public username = '';
   public email = '';
   public pass = '';
-  public aciveBatt = true
+
 
   constructor(
     private serviceUser: UsersService
   ) { }
-
-
 
   ngOnInit(): void {
     this.getNewUser()
@@ -34,16 +31,28 @@ export
     this.user = this.serviceUser.getUsers()
   }
 
-  closeModal(){
+ /*  closeModal(){
     $('#modalSighUn').hide()
+    $('.modal-backdrop').hide()
+  } */
+
+  loginValid(form: NgForm){
+    const login = this.user.slice(-1)[0].username;
+    if(form.value.user === login){
+    alert('This login already exists');
+     this.username = ''; 
+    }
+  }
+  emailValid(form: NgForm){
+    const mail = this.user.slice(-1)[0].email;
+    if (form.value.nail === mail) {
+    alert('This email already exists')
+     this.username = ''; 
+    }
   }
 
+
   submitForm(form: NgForm) {
-    const login = this.user.slice(-1)[0].username;
-    const mail = this.user.slice(-1)[0].email;
-
-    if (login !== form.value.user && mail !== form.value.mail) {
-
       const new_user = {
         id: 1,
         username: this.username,
@@ -54,19 +63,18 @@ export
       if (this.user.length > 0) {
         const id = this.user.slice(-1)[0].id;
         new_user.id = id + 1;
-
       }
       this.serviceUser.addUser(new_user)
-      form.reset();
-      this.closeModal()
+    this.username = '';
+    this.email = '';
+    this.pass = '';
+console.log(this.user);
+
     }
-    else{
-      console.log('stop');
-      
-    }
+  
   }
 
-}
+
 
 
 

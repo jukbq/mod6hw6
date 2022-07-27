@@ -10,10 +10,10 @@
 
             <div class="modal-body">
                 <label for="uname" class="form-label">Username:</label>
-                <input class="form-control" name="user" [(ngModel)]="username" type="text" id="uname" #user="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{2,16}$">
+                <input class="form-control" (input)="loginValid(signUp)" name="user" [(ngModel)]="username" type="text" id="uname" #user="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{2,16}$">
                 <br>
                 <label for="email1" class="form-label">Email::</label>
-                <input class="form-control" name="mail" [(ngModel)]="email" type="text" id="lName" #mail="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+                <input class="form-control" (input)="emailValid(signUp)" name="mail" [(ngModel)]="email" type="text" id="lName" #mail="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
                 <br>
                 <label for="pass" class="form-label">Password:</label>
                 <input class="form-control" name="password" [(ngModel)]="pass" type="text" id="pass" #password="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{6,16}$">
@@ -22,7 +22,7 @@
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" [disabled]="this.user.invalid || this.mail.invalid || this.password.invalid"> Submit</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="this.user.invalid || this.mail.invalid || this.password.invalid"> Submit</button>
 
             </div>
         </form>
