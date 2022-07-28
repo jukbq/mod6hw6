@@ -2,8 +2,8 @@
     <h3>Angular Blog</h3>
 
     <div class="buttonBlock">
-        <button *ngIf="!active_block" [routerLink]="[ '/SignIp' ]" type="button" class="btn btn-outline-success">Sigh In</button>
-        <button *ngIf="!active_block" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUn">Sigh Up</button>
+        <button *ngIf="!active_block" [routerLink]="[ '/SignIn' ]" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalSighIn">Sigh In</button>
+        <button *ngIf="!active_block" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUp">Sigh Up</button>
 
         <button *ngIf="active_block" type="button" class="btn btn-outline-success">Sigh In</button>
         <button *ngIf="active_block" type="button" class="btn btn-outline-success">Sigh In</button>
@@ -15,4 +15,22 @@
 
 </header>
 
+<div *ngIf="wrongModal" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Input Error</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+            <p>ЗIncorrect login or password. Try again or register.</p>
+        </div>
+        <div class="modal-footer">
+            <button (click)="closeModal()" [routerLink]="[ '/SignIn' ]" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalSighIn">Sigh In</button>
+            <button (click)="closeModal()" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUp">Sigh Up</button>
+        </div>
+    </div>
+</div>
+
+
 <app-sigh-up (activeBatt)='changeStatus($event)'></app-sigh-up>
+<app-sigh-in (activeBatt)='changeStatus($event)' (wrongModal)='copenModal($event)'></app-sigh-in>

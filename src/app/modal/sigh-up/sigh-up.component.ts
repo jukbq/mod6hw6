@@ -12,13 +12,16 @@ import { UsersService } from 'src/app/shared/services/users.service';
   templateUrl: './sigh-up.component.html',
   styleUrls: ['./sigh-up.component.scss']
 })
+
 export
   class SighUpComponent implements OnInit {
   @Output() activeBatt = new EventEmitter<any>();
+  @Output() wrongModal = new EventEmitter<any>();
 
   public user: User[] = []
   public activeUser = '';
   public active_block = false;
+  public wrong_nodal = false;
 
 
   public username = '';
@@ -32,11 +35,13 @@ export
 
 
   constructor(
+    
     private serviceUser: UsersService,
 
   ) { }
 
   ngOnInit(): void {
+
     this.getNewUser()
 
 
@@ -81,7 +86,7 @@ export
 
     this.serviceUser.addUser(new_user)
     this.serviceUser.addAciveUser(activeUser)
-this.active_block = true;
+    this.active_block = true;
     this.activeBatt.emit(this.active_block)
     this.username = '';
     this.email = '';

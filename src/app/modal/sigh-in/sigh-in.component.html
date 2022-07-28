@@ -2,6 +2,7 @@
 <div class="modal fade" id="modalSighIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
 
+
         <form #signIn="ngForm" (ngSubmit)="submitForm(signIn)" class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
@@ -10,16 +11,16 @@
 
             <div class="modal-body">
                 <label for="email1" class="form-label">Email::</label>
-                <input class="form-control" name="mail" [(ngModel)]="email" type="text" id="lName">
+                <input class="form-control" name="mail" [(ngModel)]="email" type="text" id="lName" #mail="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
                 <br>
                 <label for="pass" class="form-label">Password:</label>
-                <input class="form-control" name="password" [(ngModel)]="pass" type="text" id="pass">
+                <input class="form-control" name="password" [(ngModel)]="pass" type="text" id="pass" #password="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{6,16}$">
             </div>
 
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"> Submit</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="this.mail.invalid || this.password.invalid"> Submit</button>
 
             </div>
         </form>
