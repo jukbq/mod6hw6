@@ -1,11 +1,6 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-import { SighInComponent } from 'src/app/modal/sigh-in/sigh-in.component';
-import { SighUpComponent } from 'src/app/modal/sigh-up/sigh-up.component';
-import { UsersService } from 'src/app/shared/services/users.service';
-
-
 
 @Component({
   selector: 'app-header',
@@ -15,19 +10,17 @@ import { UsersService } from 'src/app/shared/services/users.service';
 export class HeaderComponent implements OnInit {
   title = 'mod6hw6';
   
-  public active_block = false
+  public active_block: boolean = false;
+ 
   public activeUser = '';
 
-  constructor(
-    private serviceUser: UsersService
-   ) { }
+  constructor() { }
 
   ngOnInit(): void {
-
-
-
   }
-
+  changeStatus(data: boolean){
+    this.active_block = data;
+  }
 
   
   

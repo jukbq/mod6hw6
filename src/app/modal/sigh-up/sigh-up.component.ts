@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as $ from "jquery";
 
@@ -14,9 +14,11 @@ import { UsersService } from 'src/app/shared/services/users.service';
 })
 export
   class SighUpComponent implements OnInit {
+  @Output() activeBatt = new EventEmitter<any>();
 
   public user: User[] = []
   public activeUser = '';
+  public active_block = false;
 
 
   public username = '';
@@ -36,8 +38,8 @@ export
 
   ngOnInit(): void {
     this.getNewUser()
-   
-    
+
+
   }
 
   getNewUser(): void {
@@ -79,7 +81,8 @@ export
 
     this.serviceUser.addUser(new_user)
     this.serviceUser.addAciveUser(activeUser)
-
+this.active_block = true;
+    this.activeBatt.emit(this.active_block)
     this.username = '';
     this.email = '';
     this.pass = '';

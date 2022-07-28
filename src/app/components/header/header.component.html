@@ -1,18 +1,18 @@
 <header>
     <h3>Angular Blog</h3>
 
-    <div *ngIf="!active_block" ngClass="_active: false" class="buttonBlock">
-        <button type="button" class="btn btn-outline-success">Sigh In</button>
-        <button [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUn">Sigh
-            Up</button>
+    <div class="buttonBlock">
+        <button *ngIf="!active_block" [routerLink]="[ '/SignIp' ]" type="button" class="btn btn-outline-success">Sigh In</button>
+        <button *ngIf="!active_block" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUn">Sigh Up</button>
+
+        <button *ngIf="active_block" type="button" class="btn btn-outline-success">Sigh In</button>
+        <button *ngIf="active_block" type="button" class="btn btn-outline-success">Sigh In</button>
+        <button *ngIf="active_block" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUn">Sigh</button>>
     </div>
 
 
-    <div *ngIf="active_block" ngClass="_active: true" class="buttonBlock">
-        <button type="button" class="btn btn-outline-success">Sigh In</button>
-        <button type="button" class="btn btn-outline-success">Sigh In</button>
-        <button [routerLink]="[ '/Signin' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUn">Sigh
-            Out</button>
-    </div>
+
 
 </header>
+
+<app-sigh-up (activeBatt)='changeStatus($event)'></app-sigh-up>
