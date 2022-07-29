@@ -5,6 +5,7 @@ import * as $ from "jquery";
 import { HeaderComponent } from 'src/app/components/header/header.component';
 
 import { User } from 'src/app/shared/interface/users.interface';
+import { BlogsService } from 'src/app/shared/services/blogs.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
@@ -17,6 +18,7 @@ export
   class SighUpComponent implements OnInit {
   @Output() activeBatt = new EventEmitter<any>();
   @Output() wrongModal = new EventEmitter<any>();
+  @Output() addActiveUser = new EventEmitter<any>();
 
   public user: User[] = []
   public activeUser = '';
@@ -37,6 +39,7 @@ export
   constructor(
     
     private serviceUser: UsersService,
+    private blogService: BlogsService
 
   ) { }
 
@@ -49,7 +52,9 @@ export
 
   getNewUser(): void {
     this.user = this.serviceUser.getUsers()
-    this.activeUser = this.serviceUser.getAciveUser()
+ 
+
+
   }
 
 
@@ -83,11 +88,15 @@ export
       const id = this.user.slice(-1)[0].id;
       new_user.id = id + 1;
     }
+console.log(this.activeUser);
 
     this.serviceUser.addUser(new_user)
-    this.serviceUser.addAciveUser(activeUser)
+    this.blogService.addAciveUser(activeUser)
     this.active_block = true;
+    this.activeUser = activeUser
     this.activeBatt.emit(this.active_block)
+    this.addActiveUser.emit(this.activeUser)
+    console.log(this.activeUser);
     this.username = '';
     this.email = '';
     this.pass = '';

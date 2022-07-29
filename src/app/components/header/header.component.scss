@@ -13,10 +13,18 @@ header {
         color: #ffffff;
     }
     .buttonBlock {
-        &:nth-child(0) {
-            background-color: #ffffff;
+        .sign_in,
+        .add_post {
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
+        }
+        .sign_up,
+        .sign_out {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+        .active_user {
+            border-radius: 0px;
         }
     }
 }

@@ -15,7 +15,8 @@ export class UsersService {
     }
   ]
 
-  private activeUser = ''
+
+
 
   constructor() { }
 
@@ -23,17 +24,12 @@ export class UsersService {
     return this.userArr
 
   }
-  getAciveUser(): string  {
-    return this.activeUser
-  }
+
 
 
   addUser(user: User): void {
     this.userArr.push(user);
    
-  }
-  addAciveUser(active: string): void {
-this.activeUser = active
   }
 
 }

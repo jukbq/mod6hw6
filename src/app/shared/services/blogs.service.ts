@@ -20,5 +20,14 @@ public now = new Date().toLocaleString()
     }
   ];
 
+  private activeUser = ''
+
   constructor() { }
+
+ 
+
+  addAciveUser(active: string): void {
+    this.activeUser = active
+  }
+
 }

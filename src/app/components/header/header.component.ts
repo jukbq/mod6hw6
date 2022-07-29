@@ -11,8 +11,9 @@ export class HeaderComponent implements OnInit {
 
   public active_block: boolean = false;
   public wrongModal: boolean = false;
-
   public activeUser = '';
+
+
 
   constructor() { }
 
@@ -23,10 +24,18 @@ export class HeaderComponent implements OnInit {
   }
 
   copenModal(data: boolean) {
-    this.wrongModal = data
-  }
-  closeModal(){
-    this.wrongModal = false
+    this.wrongModal = data;
   }
 
+  closeModal() {
+    this.wrongModal = false;
+  }
+  addActUser(data: string) {
+    this.activeUser = data;
+  }
+
+  signOut() {
+    this.activeUser = '';
+    this.active_block = false;
+  }
 }

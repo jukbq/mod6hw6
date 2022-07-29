@@ -2,12 +2,12 @@
     <h3>Angular Blog</h3>
 
     <div class="buttonBlock">
-        <button *ngIf="!active_block" [routerLink]="[ '/SignIn' ]" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalSighIn">Sigh In</button>
-        <button *ngIf="!active_block" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUp">Sigh Up</button>
+        <button *ngIf="!active_block" [routerLink]="[ '/SignIn' ]" type="button" class="btn btn-outline-success sign_in" data-bs-toggle="modal" data-bs-target="#modalSighIn">Sigh In</button>
+        <button *ngIf="!active_block" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary sign_up" data-bs-toggle="modal" data-bs-target="#modalSighUp">Sigh Up</button>
 
-        <button *ngIf="active_block" type="button" class="btn btn-outline-success">Sigh In</button>
-        <button *ngIf="active_block" type="button" class="btn btn-outline-success">Sigh In</button>
-        <button *ngIf="active_block" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUn">Sigh</button>>
+        <button *ngIf="active_block" type="button" class="btn btn-outline-success add_post">Add post</button>
+        <div *ngIf="active_block" type="button" class="btn btn-warning active_user ">{{ activeUser }}</div>
+        <button (click)="signOut()" *ngIf="active_block" type="button" class="btn btn-outline-warning sign_out">Sign Out</button>
     </div>
 
 
@@ -19,7 +19,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Input Error</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            <button (click)="closeModal()" type="button" class="btn-close"></button>
         </div>
         <div class="modal-body">
             <p>ЗIncorrect login or password. Try again or register.</p>
@@ -32,5 +32,5 @@
 </div>
 
 
-<app-sigh-up (activeBatt)='changeStatus($event)'></app-sigh-up>
+<app-sigh-up (activeBatt)='changeStatus($event)' (addActiveUser)='addActUser($event)'></app-sigh-up>
 <app-sigh-in (activeBatt)='changeStatus($event)' (wrongModal)='copenModal($event)'></app-sigh-in>

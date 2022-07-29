@@ -13,8 +13,16 @@ header {
 header h3 {
   color: #ffffff;
 }
-header .buttonBlock:nth-child(0) {
-  background-color: #ffffff;
+header .buttonBlock .sign_in,
+header .buttonBlock .add_post {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+}
+header .buttonBlock .sign_up,
+header .buttonBlock .sign_out {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+header .buttonBlock .active_user {
+  border-radius: 0px;
 }
