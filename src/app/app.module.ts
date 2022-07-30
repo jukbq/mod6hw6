@@ -18,9 +18,10 @@ import { SighInComponent } from './modal/sigh-in/sigh-in.component';
 
 
 
+
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, BlogComponent, SighUpComponent, SighInComponent
+    AppComponent, HeaderComponent, BlogComponent, SighUpComponent, SighInComponent,
 
   ],
   imports: [

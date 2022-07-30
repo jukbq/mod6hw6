@@ -10,7 +10,8 @@ export class HeaderComponent implements OnInit {
   title = 'mod6hw6';
 
   public active_block: boolean = false;
-  public wrongModal: boolean = false;
+
+
   public activeUser = '';
 
 
@@ -23,13 +24,7 @@ export class HeaderComponent implements OnInit {
     this.active_block = data;
   }
 
-  copenModal(data: boolean) {
-    this.wrongModal = data;
-  }
 
-  closeModal() {
-    this.wrongModal = false;
-  }
   addActUser(data: string) {
     this.activeUser = data;
   }
@@ -38,4 +33,8 @@ export class HeaderComponent implements OnInit {
     this.activeUser = '';
     this.active_block = false;
   }
+
+
+
+
 }

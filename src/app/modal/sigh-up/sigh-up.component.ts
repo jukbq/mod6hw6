@@ -23,7 +23,10 @@ export
   public user: User[] = []
   public activeUser = '';
   public active_block = false;
-  public wrong_nodal = false;
+  public sighUpModal = false;
+  public errorModal = false;
+  public error_name = '';
+  public error_text = '';
 
 
   public username = '';
@@ -37,7 +40,7 @@ export
 
 
   constructor(
-    
+
     private serviceUser: UsersService,
     private blogService: BlogsService
 
@@ -52,7 +55,7 @@ export
 
   getNewUser(): void {
     this.user = this.serviceUser.getUsers()
- 
+
 
 
   }
@@ -63,13 +66,20 @@ export
     const login = this.user.slice(-1)[0].username;
     const mail = this.user.slice(-1)[0].email;
     if (form.value.user == login) {
-      alert('This login already exists');
-      this.username = '';
+      this.username = ''
+      $('.invalid-uname').addClass('_active')
+    }else{
+      $('.invalid-uname').removeClass('_active')
     }
+
     if (form.value.mail == mail) {
-      alert('This email already exists')
-      this.email = '';
-    }
+      this.email = ''
+      $('.invalid-mail').addClass('_active')
+
+      }else {
+      $('.invalid-mail').removeClass('_active')
+      }
+    
   }
 
 
@@ -88,7 +98,7 @@ export
       const id = this.user.slice(-1)[0].id;
       new_user.id = id + 1;
     }
-console.log(this.activeUser);
+    console.log(this.activeUser);
 
     this.serviceUser.addUser(new_user)
     this.blogService.addAciveUser(activeUser)
@@ -104,6 +114,12 @@ console.log(this.activeUser);
 
 
   }
+
+  closeModal() {
+    this.errorModal = false
+  }
+
+
 
 }
 

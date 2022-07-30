@@ -1,3 +1,4 @@
+import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as $ from "jquery";
@@ -13,12 +14,13 @@ import { UsersService } from 'src/app/shared/services/users.service';
 })
 export class SighInComponent implements OnInit {
   @Output() activeBatt = new EventEmitter<any>();
-  @Output() wrongModal = new EventEmitter<any>();
+
 
   public user: User[] = []
   public activeUser = '';
   public active_block = false;
-  public wrong_nodal = false;
+  public sighInModal = false;
+  public errorModal = false;
 
   public email = '';
   public pass = '';
@@ -52,20 +54,25 @@ export class SighInComponent implements OnInit {
         this.activeUser = activeUser
         this.blogService.addAciveUser(activeUser)
         console.log(activeUser);
-     
-      }
+           }
       this.active_block = true;
       this.activeBatt.emit(this.active_block)
     }else{
     this.pass = '';
     this.email = '';
-    this.wrong_nodal = true
-    this.wrongModal.emit(this.wrong_nodal);
-    console.log(this.wrong_nodal)
+      this.errorModal = true
+      console.log(this.errorModal)
     }
 
+  }
 
-
+  changeModal() {
+    this.errorModal = false;
+    this.sighInModal = true; 
+  }
+  closeModal() {
+    this.errorModal = false;
+   
   }
 
 }

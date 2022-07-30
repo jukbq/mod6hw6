@@ -1,6 +1,6 @@
 <!-- Модальне вікео реэстрацыя-->
-<div class="modal fade" id="modalSighUp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div *ngIf="!sighUpModal" class="modal fade" id="modalSighUp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modalSighUp">
 
         <form #signUp="ngForm" (ngSubmit)="submitForm(signUp)" class="modal-content">
             <div class="modal-header">
@@ -11,9 +11,11 @@
             <div class="modal-body">
                 <label for="uname" class="form-label">Username:</label>
                 <input class="form-control" (blur)="formValid(signUp)" name="user" [(ngModel)]="username" type="text" id="uname" #user="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{2,16}$">
+                <div class="invalid-uname">The username you entered already exists, please try another one.</div>
                 <br>
                 <label for="email1" class="form-label">Email::</label>
                 <input class="form-control" (blur)="formValid(signUp)" name="mail" [(ngModel)]="email" type="text" id="lName" #mail="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+                <div class="invalid-mail">TThe email address you entered already exists, please try a different one</div>
                 <br>
                 <label for="pass" class="form-label">Password:</label>
                 <input class="form-control" name="password" [(ngModel)]="pass" type="text" id="pass" #password="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{6,16}$">
