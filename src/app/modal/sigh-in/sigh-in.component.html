@@ -1,5 +1,5 @@
 <!-- Модальне вікео реэстрацыя-->
-<div *ngIf="!sighInModal" class="modal fade" id="modalSighIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalSighIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
 
 
@@ -11,10 +11,12 @@
 
             <div class="modal-body">
                 <label for="email1" class="form-label">Email::</label>
-                <input class="form-control" name="mail" [(ngModel)]="email" type="text" id="lName" #mail="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+                <input class="form-control" (blur)="mailValid(signIn)" name="mail" [(ngModel)]="email" type="text" id="lName" #mail="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+                <div class="invalid-mail">TEmail address is not correct</div>
                 <br>
                 <label for="pass" class="form-label">Password:</label>
-                <input class="form-control" name="password" [(ngModel)]="pass" type="text" id="pass" #password="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{6,16}$">
+                <input class="form-control" (blur)="passValid(signIn)" name="password" [(ngModel)]="pass" type="text" id="pass" #password="ngModel" required pattern="^[a-zA-Z0-9_\-\.]{6,16}$">
+                <div class="invalid-pass">Password is not correct</div>
             </div>
 
             <div class="modal-footer">
@@ -24,24 +26,5 @@
 
             </div>
         </form>
-    </div>
-</div>
-
-<!-- Модальне вікео помилка-->
-
-
-<div *ngIf="errorModal" class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Input Error</h5>
-            <button (click)="closeModal()" type="button" class="btn-close"></button>
-        </div>
-        <div class="modal-body">
-            <p>Incorrect login or password. Try again or register.</p>
-        </div>
-        <div class="modal-footer">
-            <button (click)="changeModal()" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalSighIn">Sigh In</button>
-            <button (click)="closeModal()" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSighUp">Sigh Up</button>
-        </div>
     </div>
 </div>

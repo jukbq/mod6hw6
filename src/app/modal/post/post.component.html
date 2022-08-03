@@ -1,0 +1,28 @@
+<div class="modal fade" id="modalPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form #Post="ngForm" (ngSubmit)="submitForm(Post)" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+
+            <div class="modal-body">
+                <label for="title" class="form-label">Tirle: </label>
+                <input class="form-control" name="postTitle" [(ngModel)]="topic" type="text" id="title" #postTitle="ngModel" required>
+                <br>
+
+                <div class="mb-3">
+                    <label for="text" class="col-form-label">Сообщение:</label>
+                    <textarea class="form-control" name="postText" [(ngModel)]="message" type="text" id="text" #postText="ngModel" required></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="this.postTitle.invalid || this.postText.invalid">Post</button>
+
+            </div>
+        </form>
+    </div>
+</div>

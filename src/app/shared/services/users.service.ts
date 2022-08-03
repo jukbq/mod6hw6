@@ -15,21 +15,17 @@ export class UsersService {
     }
   ]
 
-
-
-
   constructor() { }
 
   getUsers(): Array<User> {
     return this.userArr
-
   }
-
-
 
   addUser(user: User): void {
     this.userArr.push(user);
-   
-  }
+   console.log(this.userArr);
+     }
+
+
 
 }

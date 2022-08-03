@@ -2,7 +2,7 @@ header {
     width: 100vw;
     height: 10vh;
     background-color: #383838;
-    position: fixed;
+    margin-bottom: 2vh;
     top: 0;
     left: 0;
     display: flex;
@@ -25,6 +25,50 @@ header {
         }
         .active_user {
             border-radius: 0px;
+        }
+    }
+}
+
+section {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    .post {
+        width: 80vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid #f9e7e7;
+        border-radius: 5px;
+        padding: 15px;
+        .first_block {
+            width: 80%;
+            height: auto;
+        }
+        .srcond_block {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            .date {
+                display: flex;
+                text-align: right;
+                font-size: 14px;
+                i {
+                    padding: 3px 5px 0 0;
+                }
+            }
+            .butBlock {
+                 :nth-child(1) {
+                    border-top-right-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                }
+                 :nth-child(2) {
+                    border-top-left-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                }
+            }
         }
     }
 }

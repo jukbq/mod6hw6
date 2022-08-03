@@ -16,17 +16,18 @@ import { UsersService } from 'src/app/shared/services/users.service';
 
 export
   class SighUpComponent implements OnInit {
-  @Output() activeBatt = new EventEmitter<any>();
+  @Output() activeButt = new EventEmitter<any>();
   @Output() wrongModal = new EventEmitter<any>();
   @Output() addActiveUser = new EventEmitter<any>();
+  
 
   public user: User[] = []
   public activeUser = '';
   public active_block = false;
   public sighUpModal = false;
-  public errorModal = false;
-  public error_name = '';
-  public error_text = '';
+
+
+
 
 
   public username = '';
@@ -47,40 +48,45 @@ export
   ) { }
 
   ngOnInit(): void {
-
     this.getNewUser()
-
 
   }
 
   getNewUser(): void {
     this.user = this.serviceUser.getUsers()
-
-
-
+  
   }
 
 
 
-  formValid(form: NgForm) {
-    const login = this.user.slice(-1)[0].username;
-    const mail = this.user.slice(-1)[0].email;
-    if (form.value.user == login) {
+  userValid() {
+    let userAee = this.user
+    let user = this.username;
+
+    let userValid = userAee.find(valUserl => valUserl.username === user)?.username
+
+    if (user == userValid) {
       this.username = ''
       $('.invalid-uname').addClass('_active')
-    }else{
+    } else {
       $('.invalid-uname').removeClass('_active')
-    }
-
-    if (form.value.mail == mail) {
-      this.email = ''
-      $('.invalid-mail').addClass('_active')
-
-      }else {
-      $('.invalid-mail').removeClass('_active')
-      }
-    
+    } 
   }
+
+    mailValid() {
+      let userAee = this.user
+      let mail = this.email;
+
+      let email = userAee.find(valMail => valMail.email === mail)?.email
+      console.log(email);
+
+      if (mail == email) {
+        this.email = ''
+        $('.invalid-mail').addClass('_active')
+      } else {
+        $('.invalid-mail').removeClass('_active')
+      }
+    }
 
 
   submitForm(form: NgForm) {
@@ -98,27 +104,21 @@ export
       const id = this.user.slice(-1)[0].id;
       new_user.id = id + 1;
     }
-    console.log(this.activeUser);
-
     this.serviceUser.addUser(new_user)
     this.blogService.addAciveUser(activeUser)
     this.active_block = true;
     this.activeUser = activeUser
-    this.activeBatt.emit(this.active_block)
+    this.activeButt.emit(this.active_block)
     this.addActiveUser.emit(this.activeUser)
-    console.log(this.activeUser);
-    this.username = '';
-    this.email = '';
-    this.pass = '';
+   this.cleab()
+    }
 
 
-
-  }
-
-  closeModal() {
-    this.errorModal = false
-  }
-
+cleab(){
+  this.username = '';
+  this.email = '';
+  this.pass = '';
+}
 
 
 }

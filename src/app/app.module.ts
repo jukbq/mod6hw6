@@ -8,9 +8,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { BlogComponent } from './components/blog/blog.component';
+
 import { SighUpComponent } from './modal/sigh-up/sigh-up.component';
 import { SighInComponent } from './modal/sigh-in/sigh-in.component';
+import { PostComponent } from './modal/post/post.component';
 
 
 
@@ -21,7 +22,7 @@ import { SighInComponent } from './modal/sigh-in/sigh-in.component';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, BlogComponent, SighUpComponent, SighInComponent,
+    AppComponent, HeaderComponent,  SighUpComponent, SighInComponent,  PostComponent,
 
   ],
   imports: [

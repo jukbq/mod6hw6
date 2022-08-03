@@ -4,18 +4,68 @@
     <div class="buttonBlock">
         <button *ngIf="!active_block" [routerLink]="[ '/SignIn' ]" type="button" class="btn btn-outline-success sign_in" data-bs-toggle="modal" data-bs-target="#modalSighIn">Sigh In</button>
         <button *ngIf="!active_block" [routerLink]="[ '/SignUp' ]" type="button" class="btn btn-outline-primary sign_up" data-bs-toggle="modal" data-bs-target="#modalSighUp">Sigh Up</button>
-
-        <button *ngIf="active_block" type="button" class="btn btn-outline-success add_post">Add post</button>
+        <button *ngIf="active_block" [routerLink]="[ '/post' ]" type="button" class="btn btn-outline-success post" data-bs-toggle="modal" data-bs-target="#modalPost">Add post</button>
         <div *ngIf="active_block" type="button" class="btn btn-warning active_user ">{{ activeUser }}</div>
         <button (click)="signOut()" *ngIf="active_block" type="button" class="btn btn-outline-warning sign_out">Sign Out</button>
     </div>
-
-
-
-
 </header>
 
+<section class="blog" *ngFor="let blog of blogPost; index as i">
+    <div class="post">
+        <div class="first_block">
+            <h3>{{blog.topic}}</h3>
+            <p class="postedBy"> Posted by: {{blog.postedBy}}</p>
+            <p>{{blog.message}}</p>
+        </div>
+        <div class="srcond_block">
+            <div class="date">
+                <i class="fa fa-clock"></i>
+                <p>{{blog.date}}</p>
+            </div>
 
 
-<app-sigh-up (activeBatt)='changeStatus($event)' (addActiveUser)='addActUser($event)'></app-sigh-up>
-<app-sigh-in (activeBatt)='changeStatus($event)'></app-sigh-in>
+            <div *ngIf="activeUser == 'admin' || activeUser == blog.postedBy " class="butBlock">
+                <button (click)="edit(blog)" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditPost">Edit</button>
+                <button (click)="delPost(blog)" type="button" class="btn btn-danger">Delete</button>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+
+<div class="modal fade" id="modalEditPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+
+            <div class="modal-body">
+                <label for="title" class="form-label">Tirle: </label>
+                <input class="form-control" name="postTitle" [(ngModel)]="topic" type="text" id="title" #postTitle="ngModel" required>
+                <br>
+
+                <div class="mb-3">
+                    <label for="text" class="col-form-label">Сообщение:</label>
+                    <textarea class="form-control" name="postText" [(ngModel)]="message" type="text" id="text" #postText="ngModel" required></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button (click)="saveEdit()" type="button" class="btn btn-success" data-bs-dismiss="modal" [disabled]="this.postTitle.invalid || this.postText.invalid">Edit Post</button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<app-sigh-up (activeButt)='changeStatus($event)' (addActiveUser)='addActUser($event)'></app-sigh-up>
+<app-sigh-in (activeButt)='changeStatus($event)' (addActiveUser)='addActUser($event)'></app-sigh-in>
